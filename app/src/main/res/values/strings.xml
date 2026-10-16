@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MotorKu Pro</string>
+    <string name="app_tagline">Pro Motorcycle Health &amp; Fleet Manager</string>
+    <string name="app_subtitle">Sistem Pemantau Kesehatan &amp; Diagnostik Presisi Bengkel</string>
+    <string name="cd_logo">MotorKu Pro Logo</string>
+    <string name="lbl_hud_tag">⚡ ENTERPRISE FLEET HEALTH SYSTEM</string>
+
+    <string name="specs_format">Transmisi: %1$s | Th: %2$d (%3$d Th) | Odo: %4$s KM</string>
+    <string name="percent_format">%1$d%%</string>
+
+    <!-- Layar 1: Form Input -->
+    <string name="form_title">DIAGNOSTIK KENDARAAN &amp; ODOMETER</string>
+    <string name="form_subtitle">Isi data armada untuk analisis kesehatan komponen presisi bengkel</string>
+
+    <string name="lbl_transmisi">Tipe Transmisi Kendaraan</string>
+    <string name="type_matic">🛵 Matic (CVT &amp; V-Belt)</string>
+    <string name="type_manual">🏍️ Manual / Sport (Gear &amp; Rantai)</string>
+
+    <string name="lbl_nama">Nama Pemilik / Rider</string>
+    <string name="hint_nama">Contoh: Budi Santoso</string>
+
+    <string name="lbl_email">Alamat Email Pemilik</string>
+    <string name="hint_email">Contoh: budi@gmail.com</string>
+
+    <string name="lbl_tahun_motor">Tahun Pembuatan Motor (2000 - Sekarang)</string>
+    <string name="hint_tahun_motor">Contoh: 2021</string>
+
+    <string name="lbl_odometer">Odometer Saat Ini (100 - 500.000 KM)</string>
+    <string name="hint_odometer">Contoh: 18500</string>
+
+    <string name="lbl_odo_oli">Odometer Terakhir Ganti Oli (KM)</string>
+    <string name="hint_odo_oli">Contoh: 16800</string>
+
+    <string name="btn_diagnosa">⚡ ANALISIS KESEHATAN MOTOR</string>
+    <string name="btn_reset">🔄 RESET</string>
+    <string name="btn_demo">🚀 DEMO AUTOFILL</string>
+
+    <!-- Error Messages -->
+    <string name="err_nama_empty">Nama Pemilik tidak boleh kosong!</string>
+    <string name="err_email_empty">Email Pemilik tidak boleh kosong!</string>
+    <string name="err_email_invalid">Format email tidak valid! Contoh format benar: budi@gmail.com</string>
+    <string name="err_tahun_empty">Tahun motor tidak boleh kosong!</string>
+    <string name="err_tahun_range">Tahun motor harus antara 2000 dan %1$d!</string>
+    <string name="err_odo_empty">Odometer saat ini tidak boleh kosong!</string>
+    <string name="err_odo_range">Odometer harus antara 100 s/d 500.000 KM!</string>
+    <string name="err_odo_oli_empty">Odometer oli terakhir tidak boleh kosong!</string>
+    <string name="err_odo_oli_exceed">KM ganti oli tidak boleh melebihi Odometer saat ini!</string>
+
+    <!-- Layar 2: Dashboard -->
+    <string name="dashboard_title">DASHBOARD KESEHATAN MOTOR</string>
+    <string name="dashboard_subtitle">Hasil Analisis Diagnostik Otomatis MotorKu Pro</string>
+    <string name="lbl_health_score">HEALTH INDEX SCORE</string>
+    <string name="lbl_summary_rider">Informasi Rider &amp; Kendaraan</string>
+
+    <string name="lbl_oli_title">Oli Mesin Synthetic (SAE 10W-30/40)</string>
+    <string name="lbl_cvt_title">Roller CVT &amp; V-Belt (Interval 12.000 KM)</string>
+    <string name="lbl_chain_title">Rantai &amp; Gear Set Kit (Interval 15.000 KM)</string>
+    <string name="lbl_aki_title">Kesehatan Aki Dry Cell (Tegangan 12V)</string>
+    <string name="lbl_filter_title">Filter Udara &amp; Busi (Air Filter &amp; Spark Plug)</string>
+    <string name="lbl_biaya_title">Rincian Estimasi Biaya Servis (Transparent Cost)</string>
+
+    <string name="btn_kembali">⬅️ KEMBALI KE FORM DIAGNOSTIK</string>
+</resources>

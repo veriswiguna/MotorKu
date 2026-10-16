@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Cyber Midnight Palette (Enterprise Grade) -->
+    <color name="bg_main">#0B132B</color>
+    <color name="card_bg">#1C2541</color>
+    <color name="input_bg">#0B132B</color>
+
+    <color name="accent_cyan">#00F5D4</color>
+    <color name="accent_purple">#7B2CBF</color>
+    <color name="accent_rose">#FF0054</color>
+    <color name="accent_yellow">#FFBD00</color>
+
+    <color name="text_bright">#FFFFFF</color>
+    <color name="text_muted">#8D99AE</color>
+    <color name="border_color">#3A506B</color>
+</resources>
