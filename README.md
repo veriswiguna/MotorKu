@@ -22,7 +22,8 @@
 | :---: | :---: |
 | ![Layar 1](ss1.jpg) | ![Layar 2](ss2.jpg) |
 
-> 📹 **Video Demo Aplikasi**: 👉 [▶ Download & Tonton Video Demo (MP4)](demovidio.mp4) *(Atau klik tombol "View raw" di halaman file GitHub)*
+> 📹 **Video Demo Aplikasi**: 👉
+> [▶ Download & Tonton Video Demo (MP4)](demovidio.mp4) *(Atau klik tombol "View raw" di halaman file GitHub untuk mendownloadnya dulu walaupun 24mb)*
 ---
 
 ## 📌 Tentang Aplikasi (wkwkwkw eyay)
