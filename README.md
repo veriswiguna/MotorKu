@@ -20,7 +20,7 @@
 
 | Layar 1: Form Diagnostik & Transmission Selector | Layar 2: Dashboard HUD & Itemized Cost Breakdown |
 | :---: | :---: |
-| *(Lampirkan screenshot Layar 1 di sini: `docs/screenshots/screen1.png`)* | *(Lampirkan screenshot Layar 2 di sini: `docs/screenshots/screen2.png`)* |
+| *(Lampirkan screenshot Layar 1 di sini: `docs/screenshots/ss1.jpg`)* | *(Lampirkan screenshot Layar 2 di sini: `docs/screenshots/screen2.png`)* |
 
 > 📹 **Video Demo Aplikasi**: Lampirkan rekaman layar/GIF aplikasi kamu di folder `docs/demo.gif` atau di bagian *Releases* GitHub.
 
