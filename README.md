@@ -22,14 +22,14 @@
 | :---: | :---: |
 | ![Layar 1](ss1.jpg) | ![Layar 2](ss2.jpg) |
 
-> 📹 **Video Demo Aplikasi**: 👉 [▶ Klik di Sini untuk Menonton Video Demo Aplikasi](demovidio.mp4)
+> 📹 **Video Demo Aplikasi**: 👉 [▶ Download & Tonton Video Demo (MP4)](demovidio.mp4) *(Atau klik tombol "View raw" di halaman file GitHub)*
 ---
 
 ## 📌 Tentang Aplikasi (wkwkwkw eyay)
 
-**MotorKu Pro** adalah aplikasi Android berbasis Kotlin berstandar enterprise yang dirancang khusus untuk mendiagnosa kesehatan sepeda motor (matic/manual/sport) secara presisi berdasarkan parameter riwayat odometer dan usia kendaraan dunia nyata. Aplikasi ini mengolah kondisi komponen utama (Oli Mesin Synthetic SAE 10W-30/40, Sistem Transmisi Dinamis CVT vs Rantai Kit, Aki Dry Cell 12V, serta Filter Udara & Busi Pembakaran) untuk menghasilkan **Overall Health Index Score (0-100%)**, status kondisi kendaraan, serta **Itemized Cost Estimation (Rincian Biaya Servis Transparan)** secara real-time.
+**MotorKu Pro** adalah aplikasi Android berbasis Kotlin berstandar enterprise(b aja ding) yang dirancang khusus untuk mendiagnosa kesehatan sepeda motor (matic/manual/sport) secara presisi berdasarkan parameter riwayat odometer dan usia kendaraan dunia nyata. Aplikasi ini mengolah kondisi komponen utama (Oli Mesin Synthetic SAE 10W-30/40, Sistem Transmisi Dinamis CVT vs Rantai Kit, Aki Dry Cell 12V, serta Filter Udara & Busi Pembakaran) untuk menghasilkan **Overall Health Index Score (0-100%)**, status kondisi kendaraan, serta **Itemized Cost Estimation (Rincian Biaya Servis Transparan)** secara real-time.
 
-Aplikasi ini telah dioptimalkan secara khusus untuk tampilan layar modern resolusi tinggi (*Realme 11 Pro+ 120Hz AMOLED feel*) dengan desain **Cyber Midnight Palette** yang futuristik, responsif, dan minim bug.
+Aplikasi ini telah dioptimalkan secara khusus untuk tampilan layar modern resolusi tinggi (*120Hz AMOLED feel*) dengan desain **Cyber Midnight Palette** yang futuristik😁, responsif😊, dan minim bug😏.
 
 ---
 
