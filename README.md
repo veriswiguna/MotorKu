@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🛵 MotorKu — Pro Motorcycle Health & Fleet Manager
+# 🛵 MotorKu — Pro Motorcycle Health & Fleet Menejer
 
 <p align="center">
   <b>Enterprise-Grade Motorcycle Diagnostic & Fleet Health Management Application</b>
@@ -9,7 +9,7 @@
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.9.22-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)](https://kotlinlang.org/)
 [![Android SDK](https://img.shields.io/badge/Android%20SDK-API%2024%2B-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com/)
 [![UI Style](https://img.shields.io/badge/Theme-Cyber%20Midnight-00F5D4?style=for-the-badge)](https://material.io/)
-[![Optimized Screen](https://img.shields.io/badge/Display-Realme%2011%20Pro%2B%20120Hz-FF0054?style=for-the-badge)](https://github.com/)
+[![Optimized Screen](https://img.shields.io/badge/Display-Android%120Hz-FF0054?style=for-the-badge)](https://github.com/)
 [![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge&logo=github)](https://github.com/)
 
 ---
@@ -22,8 +22,7 @@
 | :---: | :---: |
 | ![Layar 1](ss1.jpg) | ![Layar 2](ss2.jpg) |
 
-> 📹 **Video Demo Aplikasi**: Lampirkan rekaman layar/GIF aplikasi kamu di folder `docs/demo.gif` atau di bagian *Releases* GitHub.
-
+> 📹 **Video Demo Aplikasi**: <video width="100%" controls><source src="demovidio.mp4" type="video/mp4"></video>.
 ---
 
 ## 📌 Tentang Aplikasi (wkwkwkw eyay)
@@ -88,17 +87,17 @@ Aplikasi ini telah dioptimalkan secara khusus untuk tampilan layar modern resolu
 LifecycleDemo/
 ├── app/src/main/
 │   ├── java/com/example/lifecycledemo/
-│   │   ├── MainActivity.kt        # Early Exit Validation & Strict Regex Email Logic
-│   │   └── SecondActivity.kt      # Dynamic HUD Dashboard, Animations & Real-World Component Engine
+│   │   ├── MainActivity.kt        # Validasi Keluar Awal & Logika Email Regex yang Ketat
+│   │   └── SecondActivity.kt      # Dashboard HUD Dinamis, Animasi & Mesin Komponen Dunia Nyata
 │   ├── res/
 │   │   ├── drawable/
 │   │   │   ├── ic_motorku_logo.xml# Logo Vektor MotorKu Pro
-│   │   │   ├── bg_hud_card.xml    # Card Background Cyber Midnight
-│   │   │   ├── bg_hud_card_glow.xml# Card Glowing Teal Accent
-│   │   │   ├── bg_chip_selected.xml# Glowing Active Toggle State
-│   │   │   └── bg_circle_avatar.xml# Badge Circle Avatar Initials
+│   │   │   ├── bg_hud_card.xml    # Latar Belakang Kartu Cyber Midnight
+│   │   │   ├── bg_hud_card_glow.xml# Kartu dengan Aksen Biru Kehijauan yang Bersinar
+│   │   │   ├── bg_chip_selected.xml# Status Pengalihan Aktif Bercahaya
+│   │   │   └── bg_circle_avatar.xml# Lingkaran Lencana Avatar Inisial
 │   │   ├── layout/
-│   │   │   ├── activity_main.xml  # Layout Form Diagnostik Motor Pro
+│   │   │   ├── activity_main.xml  # Diagnostik Formulir Tata Letak Motor Pro
 │   │   │   └── activity_second.xml# Layout Dashboard HUD Kesehatan
 │   │   └── values/
 │   │       ├── colors.xml         # Cyber Midnight Palette (#0B132B, #1C2541, #00F5D4)
@@ -130,6 +129,6 @@ LifecycleDemo/
 
 <div align="center">
 
-Dibuat oleh **Veris** • 2026
+Dibuat oleh **VerisNih** • 2026
 
 </div>
