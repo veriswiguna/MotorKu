@@ -3,7 +3,7 @@
 # 🛵 MotorKu — Pro Motorcycle Health & Fleet Menejer
 
 <p align="center">
-  <b>Enterprise-Grade Motorcycle Diagnostic & Fleet Health Management Application</b>
+  <b>Enterprise(B aja ding)-Grade Motorcycle Diagnostic & Fleet Health Management Application</b>
 </p>
 
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.9.22-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)](https://kotlinlang.org/)
@@ -113,7 +113,7 @@ LifecycleDemo/
 
 1. **Clone Repository ini**:
    ```bash
-   git clone https://github.com/USERNAME_KAMU/MotorKu-Pro-Fleet-Manager.git
+   git clone https://github.com/USERNAME_LU!!!/MotorKu-Pro-Fleet-Manager.git
    cd MotorKu-Pro-Fleet-Manager
    ```
 
