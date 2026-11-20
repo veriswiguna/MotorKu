@@ -3,7 +3,7 @@
 # 🛵 MotorKu — Pro Motorcycle Health & Fleet Manager
 
 <p align="center">
-  <b>Enterprise-Grade Motorcycle Diagnostic & Fleet Health Management Application</b>
+  <b>Grade Motorcycle Diagnostic & Fleet Health Management Application</b>
 </p>
 
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.9.22-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)](https://kotlinlang.org/)
@@ -23,8 +23,7 @@
 | :---: | :---: |
 | ![Layar 1](ss9-1.jpg) | ![Layar 2](ss9-2.jpg) |
 
-> 📹 **Video Demo Aplikasi**: Lampirkan rekaman layar/GIF aplikasi kamu di folder `docs/demo.gif` atau di bagian *Releases* GitHub.
-
+> 📹 **Video Demo Aplikasi**: Maaf pak untuk dokumentasi video tidak saya sertakan, karena ditugas gak ada keterangannya. dan saya juga bersedia jika memang itu diharuskan/diperlukan😅🙏`video kosong disit`
 ---
 
 ## 📌 Tentang Aplikasi
