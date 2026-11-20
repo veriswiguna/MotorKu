@@ -33,7 +33,7 @@
 
 Aplikasi ini dilengkapi dengan **Penyimpanan Data Lokal (SharedPreferences & Room Database Framework)**, **Fitur Unggah Foto Profil Kustom**, serta **Sistem Pencatatan Waktu Login/Sesi Aktif Real-Time**. Mengolah kondisi komponen utama (Oli Mesin Synthetic SAE 10W-30/40, Sistem Transmisi Dinamis CVT vs Rantai Kit, Aki Dry Cell 12V, serta Filter Udara & Busi Pembakaran) untuk menghasilkan **Overall Health Index Score (0-100%)**, status kondisi kendaraan, serta **Itemized Cost Estimation (Rincian Biaya Servis Transparan)** secara instant.
 
-Aplikasi ini dioptimalkan secara khusus untuk tampilan layar modern resolusi tinggi (*Realme 11 Pro+ 120Hz AMOLED feel*) dengan desain **Cyber Midnight Palette** yang futuristik, responsif, dan minim bug.
+Aplikasi ini dioptimalkan secara khusus untuk tampilan layar modern resolusi tinggi (*120Hz AMOLED feel*) dengan desain **Cyber Midnight Palette** yang futuristik, responsif, dan minim bug.
 
 ---
 
