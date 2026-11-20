@@ -10,7 +10,6 @@
 [![Android SDK](https://img.shields.io/badge/Android%20SDK-API%2024%2B-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com/)
 [![Room DB](https://img.shields.io/badge/Room%20DB-2.8.5-4285F4?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com/training/data-storage/room)
 [![UI Style](https://img.shields.io/badge/Theme-Cyber%20Midnight-00F5D4?style=for-the-badge)](https://material.io/)
-[![Optimized Screen](https://img.shields.io/badge/Display-Realme%2011%20Pro%2B%20120Hz-FF0054?style=for-the-badge)](https://github.com/)
 [![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge&logo=github)](https://github.com/)
 
 ---
