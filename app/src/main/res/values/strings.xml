@@ -61,4 +61,16 @@
     <string name="lbl_biaya_title">Rincian Estimasi Biaya Servis (Transparent Cost)</string>
 
     <string name="btn_kembali">⬅️ KEMBALI KE FORM DIAGNOSTIK</string>
+
+    <!-- Storage SharedPreferences P9 -->
+    <string name="lbl_status_storage">💾 PENYIMPANAN LOKAL (SHAREDPREFERENCES)</string>
+    <string name="status_no_data">Belum ada data profil tersimpan. Silakan isi form &amp; jalankan analisis.</string>
+    <string name="status_data_format">Terakhir disimpan: %1$s (%2$s) • %3$s</string>
+    <string name="btn_hapus_simpan">🗑️ HAPUS DATA TERSIMPAN</string>
+    <string name="msg_data_cleared">Data tersimpan di SharedPreferences berhasil dihapus!</string>
+
+    <!-- Fitur Foto Profil & Waktu Login -->
+    <string name="lbl_ganti_foto">📷 Pilih Foto Profil</string>
+    <string name="lbl_waktu_login">🕒 Login/Sesi Aktif: %1$s</string>
+    <string name="msg_avatar_updated">📷 Foto profil berhasil diperbarui!</string>
 </resources>

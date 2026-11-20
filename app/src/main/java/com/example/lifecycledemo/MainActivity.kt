@@ -1,18 +1,46 @@
 package com.example.lifecycledemo
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.imageview.ShapeableImageView
+import java.io.File
+import java.io.FileOutputStream
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        const val PREFS_PROFIL = "profil"
+        const val KEY_NAMA_TERAKHIR = "nama_terakhir"
+        const val KEY_EMAIL_TERAKHIR = "email_terakhir"
+        const val KEY_TAHUN_TERAKHIR = "tahun_terakhir"
+        const val KEY_ODO_TERAKHIR = "odo_terakhir"
+        const val KEY_ODO_OLI_TERAKHIR = "odo_oli_terakhir"
+        const val KEY_IS_MATIC = "is_matic"
+        const val KEY_KATEGORI_TERAKHIR = "kategori_terakhir"
+        const val KEY_AVATAR_PATH = "avatar_path"
+        const val KEY_WAKTU_LOGIN = "waktu_login"
+    }
+
+    private lateinit var ivProfileAvatar: ShapeableImageView
+    private lateinit var tvAvatarInitialsMain: TextView
+    private lateinit var btnPickAvatar: TextView
+    private lateinit var tvWaktuLogin: TextView
 
     private lateinit var etNamaPemilik: EditText
     private lateinit var etEmail: EditText
@@ -26,7 +54,19 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnReset: Button
     private lateinit var btnDemo: Button
 
+    private lateinit var tvStatusTersimpan: TextView
+    private lateinit var btnHapusSimpan: Button
+
     private var isMaticSelected = true
+    private var customAvatarPath: String? = null
+    private var currentWaktuLogin: String = ""
+
+    // Activity Result Launcher untuk Pemilihan Foto Profil dari Galeri
+    private val pickImageLauncher = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
+        uri?.let { saveAndDisplayAvatar(it) }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,9 +74,15 @@ class MainActivity : AppCompatActivity() {
 
         initViews()
         setupListeners()
+        loadSavedData()
     }
 
     private fun initViews() {
+        ivProfileAvatar = findViewById(R.id.ivProfileAvatar)
+        tvAvatarInitialsMain = findViewById(R.id.tvAvatarInitialsMain)
+        btnPickAvatar = findViewById(R.id.btnPickAvatar)
+        tvWaktuLogin = findViewById(R.id.tvWaktuLogin)
+
         etNamaPemilik = findViewById(R.id.etNamaPemilik)
         etEmail = findViewById(R.id.etEmail)
         etTahunMotor = findViewById(R.id.etTahunMotor)
@@ -48,9 +94,20 @@ class MainActivity : AppCompatActivity() {
         btnDiagnosa = findViewById(R.id.btnDiagnosa)
         btnReset = findViewById(R.id.btnReset)
         btnDemo = findViewById(R.id.btnDemo)
+
+        tvStatusTersimpan = findViewById(R.id.tvStatusTersimpan)
+        btnHapusSimpan = findViewById(R.id.btnHapusSimpan)
     }
 
     private fun setupListeners() {
+        btnPickAvatar.setOnClickListener {
+            pickImageLauncher.launch("image/*")
+        }
+
+        ivProfileAvatar.setOnClickListener {
+            pickImageLauncher.launch("image/*")
+        }
+
         btnTypeMatic.setOnClickListener {
             isMaticSelected = true
             updateTypeSelectorUI()
@@ -71,6 +128,122 @@ class MainActivity : AppCompatActivity() {
 
         btnDemo.setOnClickListener {
             autofillDemoData()
+        }
+
+        btnHapusSimpan.setOnClickListener {
+            val prefs = getSharedPreferences(PREFS_PROFIL, MODE_PRIVATE)
+            prefs.edit().clear().apply()
+
+            // Hapus file foto jika ada
+            customAvatarPath?.let { path ->
+                val file = File(path)
+                if (file.exists()) file.delete()
+            }
+            customAvatarPath = null
+            ivProfileAvatar.setImageResource(R.drawable.ic_motorku_logo)
+
+            resetForm()
+            generateAndUpdateLoginTimestamp()
+            tvStatusTersimpan.text = getString(R.string.status_no_data)
+            Toast.makeText(this, getString(R.string.msg_data_cleared), Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun saveAndDisplayAvatar(uri: Uri) {
+        try {
+            val inputStream = contentResolver.openInputStream(uri)
+            val avatarFile = File(filesDir, "user_avatar.jpg")
+            val outputStream = FileOutputStream(avatarFile)
+
+            inputStream?.use { input ->
+                outputStream.use { output ->
+                    input.copyTo(output)
+                }
+            }
+
+            customAvatarPath = avatarFile.absolutePath
+
+            // Simpan path ke SharedPreferences
+            val prefs = getSharedPreferences(PREFS_PROFIL, MODE_PRIVATE)
+            prefs.edit().putString(KEY_AVATAR_PATH, customAvatarPath).apply()
+
+            displayAvatar(customAvatarPath)
+            Toast.makeText(this, getString(R.string.msg_avatar_updated), Toast.LENGTH_SHORT).show()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, "Gagal memperbarui foto profil: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun displayAvatar(path: String?) {
+        if (!path.isNullOrEmpty() && File(path).exists()) {
+            val bitmap = BitmapFactory.decodeFile(path)
+            if (bitmap != null) {
+                ivProfileAvatar.setImageBitmap(bitmap)
+                tvAvatarInitialsMain.visibility = View.GONE
+                return
+            }
+        }
+        ivProfileAvatar.setImageResource(R.drawable.ic_motorku_logo)
+    }
+
+    private fun generateAndUpdateLoginTimestamp(): String {
+        val formatter = SimpleDateFormat("dd MMM yyyy, HH:mm 'WIB'", Locale.forLanguageTag("id-ID"))
+        val waktuFormatted = formatter.format(Date())
+        currentWaktuLogin = waktuFormatted
+
+        tvWaktuLogin.text = getString(R.string.lbl_waktu_login, waktuFormatted)
+
+        val prefs = getSharedPreferences(PREFS_PROFIL, MODE_PRIVATE)
+        prefs.edit().putString(KEY_WAKTU_LOGIN, waktuFormatted).apply()
+
+        return waktuFormatted
+    }
+
+    /**
+     * Latihan 2 & 3: Membaca kembali data tersimpan dari SharedPreferences saat aplikasi dibuka
+     */
+    private fun loadSavedData() {
+        val prefs = getSharedPreferences(PREFS_PROFIL, MODE_PRIVATE)
+        val namaTersimpan = prefs.getString(KEY_NAMA_TERAKHIR, "") ?: ""
+        val savedAvatarPath = prefs.getString(KEY_AVATAR_PATH, null)
+        val savedWaktuLogin = prefs.getString(KEY_WAKTU_LOGIN, null)
+
+        customAvatarPath = savedAvatarPath
+        displayAvatar(customAvatarPath)
+
+        if (!savedWaktuLogin.isNullOrEmpty()) {
+            currentWaktuLogin = savedWaktuLogin
+            tvWaktuLogin.text = getString(R.string.lbl_waktu_login, savedWaktuLogin)
+        } else {
+            generateAndUpdateLoginTimestamp()
+        }
+
+        if (namaTersimpan.isNotEmpty()) {
+            val emailTersimpan = prefs.getString(KEY_EMAIL_TERAKHIR, "") ?: ""
+            val tahunTersimpan = prefs.getString(KEY_TAHUN_TERAKHIR, "") ?: ""
+            val odoTersimpan = prefs.getString(KEY_ODO_TERAKHIR, "") ?: ""
+            val odoOliTersimpan = prefs.getString(KEY_ODO_OLI_TERAKHIR, "") ?: ""
+            val isMatic = prefs.getBoolean(KEY_IS_MATIC, true)
+            val statusTersimpan = prefs.getString(KEY_KATEGORI_TERAKHIR, "") ?: ""
+
+            etNamaPemilik.setText(namaTersimpan)
+            etEmail.setText(emailTersimpan)
+            etTahunMotor.setText(tahunTersimpan)
+            etOdometer.setText(odoTersimpan)
+            etOdoOliTerakhir.setText(odoOliTersimpan)
+
+            isMaticSelected = isMatic
+            updateTypeSelectorUI()
+
+            tvStatusTersimpan.text = getString(
+                R.string.status_data_format,
+                namaTersimpan,
+                if (tahunTersimpan.isNotEmpty()) "$tahunTersimpan Th" else "N/A",
+                if (statusTersimpan.isNotEmpty()) statusTersimpan else "Tersimpan"
+            )
+        } else {
+            tvStatusTersimpan.text = getString(R.string.status_no_data)
         }
     }
 
@@ -167,14 +340,14 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        // 2. Validasi Format Email Presisi (Cegah budi@, budi, budi@gmail., budi@gm, dll.)
+        // 2. Validasi Format Email Presisi
         if (!isValidEmail(email)) {
             etEmail.error = getString(R.string.err_email_invalid)
             etEmail.requestFocus()
             return
         }
 
-        // 3. Validasi Tahun Motor (Rentang 2000 s/d Tahun Berjalan)
+        // 3. Validasi Tahun Motor
         val tahunSekarang = Calendar.getInstance()[Calendar.YEAR]
         val tahunMotor = tahunStr.toIntOrNull() ?: 0
         if (tahunMotor !in 2000..tahunSekarang) {
@@ -183,7 +356,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        // 4. Validasi Odometer Logis (100 s/d 500.000 KM)
+        // 4. Validasi Odometer Logis
         val odo = odoStr.toLongOrNull() ?: 0L
         if (odo !in 100L..500000L) {
             etOdometer.error = getString(R.string.err_odo_range)
@@ -191,13 +364,16 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        // 5. Validasi Odometer Oli (Odo Oli Terakhir TIDAK BOLEH > Odometer saat ini)
+        // 5. Validasi Odometer Oli
         val odoOli = odoOliStr.toLongOrNull() ?: 0L
         if (odoOli > odo) {
             etOdoOliTerakhir.error = getString(R.string.err_odo_oli_exceed)
             etOdoOliTerakhir.requestFocus()
             return
         }
+
+        // Perbarui Waktu Aktivitas/Login
+        val waktuLoginTerbaru = generateAndUpdateLoginTimestamp()
 
         // ==========================================
         // CALCULATION ENGINE & KOTLIN LOGIC
@@ -215,7 +391,7 @@ class MainActivity : AppCompatActivity() {
         val sisaTransmisiKm = (intervalTransmisi - pemakaianTransmisi).coerceAtLeast(0)
         val persenTransmisi = ((sisaTransmisiKm.toDouble() / intervalTransmisi.toDouble()) * 100).toInt().coerceIn(0, 100)
 
-        // Persentase Aki Dry Cell (Berdasarkan Umur Motor)
+        // Persentase Aki Dry Cell
         val persenAki = when {
             umurMotor <= 2 -> 95
             umurMotor <= 4 -> 70
@@ -223,12 +399,12 @@ class MainActivity : AppCompatActivity() {
             else -> 20
         }
 
-        // Persentase Filter Udara & Busi (Interval 10.000 KM)
+        // Persentase Filter Udara & Busi
         val pemakaianFilter = odo % 10000L
         val sisaFilterKm = (10000L - pemakaianFilter).coerceAtLeast(0)
         val persenFilter = ((sisaFilterKm.toDouble() / 10000.0) * 100).toInt().coerceIn(0, 100)
 
-        // Overall Health Index Score (Weighted Average: 35% Oli, 35% Transmisi, 15% Aki, 15% Filter)
+        // Overall Health Index Score
         val totalHealthScore = ((persenOli * 0.35) + (persenTransmisi * 0.35) + (persenAki * 0.15) + (persenFilter * 0.15)).toInt().coerceIn(0, 100)
 
         // Status Motor
@@ -239,7 +415,30 @@ class MainActivity : AppCompatActivity() {
             else       -> "BAHAYA / KRITIS (Wajib Kunjungi Bengkel! 🚨)"
         }
 
-        // Itemization Cost Estimation (Rincian Biaya Transparan)
+        // Simpan data HANYA SETELAH validasi lolos menggunakan SharedPreferences & apply()
+        val prefs = getSharedPreferences(PREFS_PROFIL, MODE_PRIVATE)
+        val editor = prefs.edit()
+            .putString(KEY_NAMA_TERAKHIR, nama)
+            .putString(KEY_EMAIL_TERAKHIR, email)
+            .putString(KEY_TAHUN_TERAKHIR, tahunStr)
+            .putString(KEY_ODO_TERAKHIR, odoStr)
+            .putString(KEY_ODO_OLI_TERAKHIR, odoOliStr)
+            .putBoolean(KEY_IS_MATIC, isMaticSelected)
+            .putString(KEY_KATEGORI_TERAKHIR, statusMotor)
+            .putString(KEY_WAKTU_LOGIN, waktuLoginTerbaru)
+
+        customAvatarPath?.let { editor.putString(KEY_AVATAR_PATH, it) }
+        editor.apply()
+
+        // Perbarui status text UI
+        tvStatusTersimpan.text = getString(
+            R.string.status_data_format,
+            nama,
+            "$tahunStr Th",
+            statusMotor
+        )
+
+        // Itemization Cost Estimation
         var totalBiaya = 50000 // Jasa Bengkel Dasar
         val rincianItems = mutableListOf<String>()
         val localeId = Locale.forLanguageTag("id-ID")
@@ -290,6 +489,8 @@ class MainActivity : AppCompatActivity() {
             putExtra(SecondActivity.EXTRA_PERSEN_FILTER, persenFilter)
             putExtra(SecondActivity.EXTRA_TOTAL_BIAYA, totalBiaya)
             putExtra(SecondActivity.EXTRA_RINCIAN_BIAYA, rincianBiayaText)
+            putExtra(SecondActivity.EXTRA_AVATAR_PATH, customAvatarPath)
+            putExtra(SecondActivity.EXTRA_WAKTU_LOGIN, waktuLoginTerbaru)
         }
 
         startActivity(intent)

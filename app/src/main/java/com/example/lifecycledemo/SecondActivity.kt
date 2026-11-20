@@ -3,13 +3,17 @@ package com.example.lifecycledemo
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.res.ColorStateList
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.imageview.ShapeableImageView
+import java.io.File
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -31,12 +35,16 @@ class SecondActivity : AppCompatActivity() {
         const val EXTRA_PERSEN_FILTER = "extra_persen_filter"
         const val EXTRA_TOTAL_BIAYA = "extra_total_biaya"
         const val EXTRA_RINCIAN_BIAYA = "extra_rincian_biaya"
+        const val EXTRA_AVATAR_PATH = "extra_avatar_path"
+        const val EXTRA_WAKTU_LOGIN = "extra_waktu_login"
     }
 
     private lateinit var tvAvatarInitials: TextView
+    private lateinit var ivRiderAvatar: ShapeableImageView
     private lateinit var tvRiderName: TextView
     private lateinit var tvRiderEmail: TextView
     private lateinit var tvMotorSpecs: TextView
+    private lateinit var tvRiderWaktuLogin: TextView
     private lateinit var tvBadgeTransmisi: TextView
 
     private lateinit var tvHealthScore: TextView
@@ -77,9 +85,11 @@ class SecondActivity : AppCompatActivity() {
 
     private fun initViews() {
         tvAvatarInitials = findViewById(R.id.tvAvatarInitials)
+        ivRiderAvatar = findViewById(R.id.ivRiderAvatar)
         tvRiderName = findViewById(R.id.tvRiderName)
         tvRiderEmail = findViewById(R.id.tvRiderEmail)
         tvMotorSpecs = findViewById(R.id.tvMotorSpecs)
+        tvRiderWaktuLogin = findViewById(R.id.tvRiderWaktuLogin)
         tvBadgeTransmisi = findViewById(R.id.tvBadgeTransmisi)
 
         tvHealthScore = findViewById(R.id.tvHealthScore)
@@ -126,6 +136,8 @@ class SecondActivity : AppCompatActivity() {
         val odo = intent.getLongExtra(EXTRA_ODOMETER, 0L)
         val healthScore = intent.getIntExtra(EXTRA_HEALTH_SCORE, 100)
         val statusMotor = intent.getStringExtra(EXTRA_STATUS_MOTOR) ?: "PERFORMA PRIMA"
+        val avatarPath = intent.getStringExtra(EXTRA_AVATAR_PATH)
+        val waktuLogin = intent.getStringExtra(EXTRA_WAKTU_LOGIN) ?: "Baru saja"
 
         val persenOli = intent.getIntExtra(EXTRA_PERSEN_OLI, 100)
         val sisaOliKm = intent.getLongExtra(EXTRA_SISA_OLI_KM, 2500L)
@@ -138,17 +150,29 @@ class SecondActivity : AppCompatActivity() {
         val totalBiaya = intent.getIntExtra(EXTRA_TOTAL_BIAYA, 50000)
         val rincianBiayaText = intent.getStringExtra(EXTRA_RINCIAN_BIAYA) ?: "• Jasa Bengkel Dasar: Rp 50.000"
 
-        // 1. Olah Inisial Rider (2 Huruf Depan)
-        val initials = nama.split(" ")
-            .asSequence()
-            .filter { it.isNotEmpty() }
-            .take(2)
-            .joinToString("") { it.first().uppercase() }
-            .ifEmpty { "MK" }
+        // Display Avatar (Foto Profil vs Inisial)
+        if (!avatarPath.isNullOrEmpty() && File(avatarPath).exists()) {
+            val bitmap = BitmapFactory.decodeFile(avatarPath)
+            if (bitmap != null) {
+                ivRiderAvatar.setImageBitmap(bitmap)
+                ivRiderAvatar.visibility = View.VISIBLE
+                tvAvatarInitials.visibility = View.GONE
+            }
+        } else {
+            val initials = nama.split(" ")
+                .asSequence()
+                .filter { it.isNotEmpty() }
+                .take(2)
+                .joinToString("") { it.first().uppercase() }
+                .ifEmpty { "MK" }
+            tvAvatarInitials.text = initials
+            ivRiderAvatar.visibility = View.GONE
+            tvAvatarInitials.visibility = View.VISIBLE
+        }
 
-        tvAvatarInitials.text = initials
         tvRiderName.text = nama
         tvRiderEmail.text = email
+        tvRiderWaktuLogin.text = getString(R.string.lbl_waktu_login, waktuLogin)
 
         val formatOdo = NumberFormat.getNumberInstance(localeId).format(odo)
         tvMotorSpecs.text = "Tipe: $transmisi | Umur: $umurMotor Th | Odo: $formatOdo KM"
