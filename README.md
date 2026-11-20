@@ -21,7 +21,7 @@
 
 | Layar 1: Form Diagnostik & Local Storage | Layar 2: Dashboard HUD & Itemized Cost Breakdown |
 | :---: | :---: |
-| *(Lampirkan screenshot Layar 1 di sini: `docs/screenshots/screen1.png`)* | *(Lampirkan screenshot Layar 2 di sini: `docs/screenshots/screen2.png`)* |
+| *(Lampirkan screenshot Layar 1 di sini: `ss9.1.png`)* | *(Lampirkan screenshot Layar 2 di sini: `ss9-2.jpg`)* |
 
 > 📹 **Video Demo Aplikasi**: Lampirkan rekaman layar/GIF aplikasi kamu di folder `docs/demo.gif` atau di bagian *Releases* GitHub.
 
